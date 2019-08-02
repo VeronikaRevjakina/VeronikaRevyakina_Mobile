@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Native Tests">
+
+    <test name="native_hw2">
+        <classes>
+            <class name="scenarios.nativeTests.SimpleNativeTests">
+                <methods>
+                    <include name="simpleNativeTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
