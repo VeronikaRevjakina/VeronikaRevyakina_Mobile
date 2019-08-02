@@ -1,0 +1,13 @@
+5.Only one DesiredCapability deviceName should be changed to the name of real device (you can get this name by running adb devices in CLI)  
+For example in my case: capabilities.setCapability("deviceName","682da8c20504");
+
+6.Steps:
+1.install driver which suits your device (via Internet)
+2.turn on the developer mode on physical device and enable USB debugging
+3.connect device to via USB
+
+Run Appium server and run tests.
+
+I had to use another version of Chrome in appium, because of elder version on emulator.On my PC emulator works much slower because there is not much ORM.
+So, on real device tests works much faster and before tests every time appium settings window appears.
+Also,with web test on real device appears windows containing choode searching system options.
