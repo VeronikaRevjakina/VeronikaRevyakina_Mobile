@@ -8,9 +8,17 @@ import java.io.IOException;
 
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Web Test for checking web application is working properly
+ */
 @Test(groups = "web")
 public class SimpleWebTests extends Hooks {
-
+    /**
+     * Constructor with
+     * @parameter "web"/"native"
+     * to pass to parent constructor for
+     * right initialization
+     */
     protected SimpleWebTests() throws IOException {
         super("web");
     }

@@ -7,9 +7,17 @@ import setup.Driver;
 
 import java.io.IOException;
 
+/**
+ * Class abstraction for setUp() and tearDown() methods
+ */
 @Test(groups = {"native", "web"})
 public class Hooks extends Driver {
-
+    /**
+     * Constructor with
+     * @parameter appType required "web"/"native"
+     * to pass to parent constructor for
+     * right initialization
+     */
     public Hooks(String appType) throws IOException {
         super(appType);
     }

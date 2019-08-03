@@ -6,10 +6,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Class required to process properties
+ */
 public class TestProperties {
     Properties currentProps = new Properties();
     String propertyPath;
 
+    /**
+     * Getting property by application type "web"/"native"
+     * @param appType
+     * @return required property
+     * @throws IOException
+     */
     Properties getCurrentProps(String appType) throws IOException {
         if (appType.equals("web")) {
             propertyPath = PropertyFile.WEB.getPath();

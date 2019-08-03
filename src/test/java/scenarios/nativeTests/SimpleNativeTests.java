@@ -9,9 +9,17 @@ import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
 
+/**
+ * Native Test for checking web application is working properly
+ */
 @Test(groups = "native")
 public class SimpleNativeTests extends Hooks {
-
+    /**
+     * Constructor with
+     * @parameter "web"/"native"
+     * to pass to parent constructor for
+     * right initialization
+     */
     protected SimpleNativeTests() throws IOException {
         super("native");
     }

@@ -22,7 +22,11 @@ public class Driver extends TestProperties{
     protected static String DRIVER;
     protected static String packageName;
 
-    // Constructor initializes properties on driverSingle creation
+    /**
+     * Constructor initializes properties on driverSingle creation
+     * @param appType required application type "web"/"native"
+     * @throws IOException
+     */
     protected Driver(String appType) throws IOException {
         String t_aut = getProp(appType, "aut");
         AUT = t_aut == null ? null :  System.getProperty("user.dir") + t_aut;
@@ -80,7 +84,11 @@ public class Driver extends TestProperties{
             waitSingle = new WebDriverWait(driver(), 10);
         }
     }
-
+    /**
+     * Makes driverSingle Singletone pattern
+     * @return driverSingle
+     * @throws Exception
+     */
     protected AppiumDriver driver() throws Exception {
         if (driverSingle == null) {
             prepareDriver();
