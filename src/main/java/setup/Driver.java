@@ -1,6 +1,7 @@
 package setup;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,7 +22,10 @@ public class Driver extends TestProperties{
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
     protected static String packageName;
-
+    protected static String UDID;
+    protected static String appPackage;
+    protected static String appActivity;
+    protected static String DEVICE_NAME;
     /**
      * Constructor initializes properties on driverSingle creation
      * @param appType required application type "web"/"native"
@@ -35,6 +39,10 @@ public class Driver extends TestProperties{
         SUT = t_sut == null ? null : "https://" + t_sut;
         TEST_PLATFORM = getProp(appType, "platform");
         DRIVER = getProp(appType, "driver");
+        UDID = getProp(appType,"udid");
+        appPackage = getProp(appType, "apppackage");
+        appActivity = getProp(appType, "appactivity");
+        DEVICE_NAME = getProp(appType, "deviceName");
     }
 
     /**
@@ -50,9 +58,11 @@ public class Driver extends TestProperties{
         // Setup test platform: Android or iOS. Browser is also platform-dependent
         switch (TEST_PLATFORM) {
             case "Android":
-                // default Android emulator
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
-                        "emulator-5554");
+
+                /*capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
+                        "emulator-5554");*/
+                /*capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
+                        DEVICE_NAME);*/
                 browserName = "Chrome";
                 break;
             case "iOS":
@@ -61,16 +71,29 @@ public class Driver extends TestProperties{
             default:
                 throw new Exception("Unknown mobile platform");
         }
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
+        capabilities.setCapability(MobileCapabilityType.UDID,UDID);
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,
+                TEST_PLATFORM);
 
         // Setup type of application: mobile / web / hybrid
         if (AUT != null && SUT == null) {
             // Native
             File app = new File(AUT);
-            capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+            capabilities.setCapability(MobileCapabilityType.APP,
+                    app.getAbsolutePath());
+            /*capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
+                   DEVICE_NAME);*/
+            //capabilities.setCapability("autoLaunch","true");
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,
+                    appPackage);
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,
+                    appActivity);
         } else if (SUT != null && AUT==null) {
             // Web
-            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
+            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,
+                    browserName);
+            //capabilities.setCapability("fullReset", false);
+            capabilities.setCapability("noReset", true);
         } else {
             throw new Exception("Unclear type of mobile app");
         }

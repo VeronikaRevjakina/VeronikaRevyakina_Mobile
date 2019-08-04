@@ -30,8 +30,8 @@ public class Hooks extends Driver {
     }
 
     @AfterSuite(description = "Close driver on all tests completion")
-    public void tearDown() throws Exception {
-        driver().quit();
+    public void tearDown(String appType) throws Exception {
+        driverSingle.close();
         System.out.println("Driver closed");
     }
 
