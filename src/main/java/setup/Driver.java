@@ -20,7 +20,7 @@ public class Driver extends TestProperties{
     protected static String SUT;// site under testing
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
-    protected static String packageName;
+    public static String packageName;
     protected static String deviceName;
 
     /**
