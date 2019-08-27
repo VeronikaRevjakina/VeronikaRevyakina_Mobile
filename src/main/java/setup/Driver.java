@@ -21,6 +21,7 @@ public class Driver extends TestProperties{
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
     protected static String packageName;
+    protected static String deviceName;
 
     /**
      * Constructor initializes properties on driverSingle creation
@@ -35,6 +36,7 @@ public class Driver extends TestProperties{
         SUT = t_sut == null ? null : "https://" + t_sut;
         TEST_PLATFORM = getProp(appType, "platform");
         DRIVER = getProp(appType, "driver");
+        deviceName=getProp(appType, "deviceName");
     }
 
     /**
@@ -52,7 +54,7 @@ public class Driver extends TestProperties{
             case "Android":
                 // default Android emulator
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
-                        "emulator-5554");
+                        deviceName);
                 browserName = "Chrome";
                 break;
             case "iOS":

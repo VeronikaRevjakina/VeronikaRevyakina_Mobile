@@ -1,7 +1,5 @@
 package setup;
 
-import enums.PropertyFile;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -11,19 +9,24 @@ import java.util.Properties;
  */
 public class TestProperties {
     Properties currentProps = new Properties();
+
+    public static final String WEB = "/webtest.properties";
+    public static final String NATIVE = "/nativetest.properties";
+
     String propertyPath;
 
     /**
      * Getting property by application type "web"/"native"
+     *
      * @param appType
      * @return required property
      * @throws IOException
      */
     Properties getCurrentProps(String appType) throws IOException {
         if (appType.equals("web")) {
-            propertyPath = PropertyFile.WEB.getPath();
+            propertyPath = WEB;
         } else if (appType.equals("native")) {
-            propertyPath = PropertyFile.NATIVE.getPath();
+            propertyPath = NATIVE;
         } else {
             System.out.println("Unclear type of mobile app");
         }
